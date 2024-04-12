@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\EmployeeRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: EmployeeRepository::class)]
@@ -18,6 +20,17 @@ class Employee
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $firstname = null;
+
+    /**
+     * @var Collection<int, UsedCar>
+     */
+    #[ORM\OneToMany(targetEntity: UsedCar::class, mappedBy: 'employee')]
+    private Collection $usedCars;
+
+    public function __construct()
+    {
+        $this->usedCars = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -44,6 +57,36 @@ class Employee
     public function setFirstname(?string $firstname): static
     {
         $this->firstname = $firstname;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, UsedCar>
+     */
+    public function getUsedCars(): Collection
+    {
+        return $this->usedCars;
+    }
+
+    public function addUsedCar(UsedCar $usedCar): static
+    {
+        if (!$this->usedCars->contains($usedCar)) {
+            $this->usedCars->add($usedCar);
+            $usedCar->setEmployee($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUsedCar(UsedCar $usedCar): static
+    {
+        if ($this->usedCars->removeElement($usedCar)) {
+            // set the owning side to null (unless already changed)
+            if ($usedCar->getEmployee() === $this) {
+                $usedCar->setEmployee(null);
+            }
+        }
 
         return $this;
     }
