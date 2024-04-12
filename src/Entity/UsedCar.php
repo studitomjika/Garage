@@ -30,7 +30,7 @@ class UsedCar
     private ?string $pictureFilename = null;
 
     #[ORM\ManyToOne(inversedBy: 'usedCars')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Employee $employee = null;
 
     public function getId(): ?int

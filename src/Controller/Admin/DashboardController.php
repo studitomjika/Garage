@@ -2,9 +2,17 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Comment;
+use App\Entity\Configuration;
+use App\Entity\Employee;
+use App\Entity\Message;
+use App\Entity\OpeningHours;
+use App\Entity\Service;
+use App\Entity\UsedCar;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
+use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -13,7 +21,7 @@ class DashboardController extends AbstractDashboardController
     #[Route('/admin', name: 'admin')]
     public function index(): Response
     {
-        return parent::index();
+        //return parent::index();
 
         // Option 1. You can make your dashboard redirect to some common page of your backend
         //
@@ -30,6 +38,11 @@ class DashboardController extends AbstractDashboardController
         // (tip: it's easier if your template extends from @EasyAdmin/page/content.html.twig)
         //
         // return $this->render('some/path/my-dashboard.html.twig');
+
+        $routeBuilder = $this->container->get(AdminUrlGenerator::class);
+        $url = $routeBuilder->setController(EmployeeCrudController::class)->generateUrl();
+
+        return $this->redirect($url);
     }
 
     public function configureDashboard(): Dashboard
@@ -42,5 +55,14 @@ class DashboardController extends AbstractDashboardController
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
+
+        yield MenuItem::linktoRoute('Back to the website', 'fas fa-home', 'homepage');
+        yield MenuItem::linkToCrud('Comment', 'fas fa-map-marker-alt', Comment::class);
+        yield MenuItem::linkToCrud('Configuration', 'fas fa-map-marker-alt', Configuration::class);
+        yield MenuItem::linkToCrud('Employee', 'fas fa-map-marker-alt', Employee::class);
+        yield MenuItem::linkToCrud('Message', 'fas fa-map-marker-alt', Message::class);
+        yield MenuItem::linkToCrud('OpeningHours', 'fas fa-map-marker-alt', OpeningHours::class);
+        yield MenuItem::linkToCrud('Service', 'fas fa-map-marker-alt', Service::class);
+        yield MenuItem::linkToCrud('UsedCar', 'fas fa-map-marker-alt', UsedCar::class);
     }
 }
