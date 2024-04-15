@@ -32,6 +32,11 @@ class Employee
         $this->usedCars = new ArrayCollection();
     }
 
+    public function __toString(): string
+    {
+        return $this->name.' '.$this->firstname;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Employee list - {{ employee.name }}{% endblock %}
+
+{% block body %}
+    <h2>{{ employee.name }} Employee</h2>
+
+    {% if usedCars|length > 0 %}
+        {% for usedCar in usedCars %}
+
+            <h4>{{ usedCar.model }}</h4>
+
+            <p>{{ usedCar.price }}</p>
+        {% endfor %}
+    {% else %}
+        <div>Pas de voiture d'occas'.</div>
+    {% endif %}
+
+{% endblock %}
