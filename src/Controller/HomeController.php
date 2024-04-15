@@ -16,21 +16,8 @@ class HomeController extends AbstractController
     //public function index(): Response
     public function index(Environment $twig, EmployeeRepository $employeeRepository): Response
     {
-        /* return $this->render('home/index.html.twig', [
+        return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
-        ]); */
-
-        return new Response($twig->render('employee/index.html.twig', [
-            'employees' => $employeeRepository->findAll(),
-        ]));
-    }
-
-    #[Route('/employee/{id}', name: 'employee')]
-    public function show(Environment $twig, Employee $employee, UsedCarRepository $usedCarsRepository): Response
-    {
-        return new Response($twig->render('employee/show.html.twig', [
-            'employee' => $employee,
-            'usedCars' => $usedCarsRepository->findBy(['employee' => $employee]),
-        ]));
+        ]);
     }
 }
