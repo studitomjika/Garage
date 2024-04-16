@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width,initial-scale=1" name="viewport">
+        <title>Garage V. Parrot</title>
+        <link href="https://fonts.cdnfonts.com/css/barlow" rel="stylesheet">
+        <link href="https://fonts.cdnfonts.com/css/rajdhani" rel="stylesheet">
+        <link rel="stylesheet" href="style.css?<?= time(); ?>"><!--dev only for CSS cache reload-->
+        <meta name="description" content="Réparation, révision, entretien, contrôle technique, vente de voitures d'occasions">
+    </head>
+
+    <body>
+        <aside class="flex col">
+            <a href="index_garage.html"><h1>Garage V. Parrot</h1></a>
+            {# <?php
+            if( !isset($_SESSION['id_user'])) {
+                if ( !empty($CONFIGS['formulaire_connect']) ) {
+                    echo '<a class="like-button open-modal-onclick" data-modal="modal-connect">Se connecter</a>';
+                }
+            } else {
+            ?> #}
+            {% block button_connect %}{% endblock %}
+
+            {# <form action="index.php" method="post">
+                <input type="submit" class="like-button" value="Deconnexion"/>
+                <input type="hidden" name="disconnect" value="1"/>
+            </form>
+            <a href="admin.php" class="like-button">Administration</a> <?php } ?> #}
+
+            {% block title_hours %}{% endblock %}
+
+            {% block section_hours %}{% endblock %}
+
+            {% block button_contact %}{% endblock %}
+
+            {% block section_comment %}{% endblock %}
+
+            {% block button_comment %}{% endblock %}
+        </aside>
+
+        <main class="flex col">
+            {% block title_services %}{% endblock %}
+            
+            {% block section_services %}{% endblock %}
+
+            {% block title_voitures %}{% endblock %}
+
+            {% include "home/filters.html" %}
+
+            {% block section_used_cars %}{% endblock %}
+        </main>
+
+        {# <script src="modals.js" type="text/javascript"></script> #}
+
+    </body>
+</html>

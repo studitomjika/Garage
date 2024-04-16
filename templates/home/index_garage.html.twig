@@ -1,0 +1,120 @@
+{% extends 'home/base_garage.html.twig' %}
+
+{% block button_connect %}
+    {% for configuration in configurations %}
+        {% if 'formulaire_connect' in configuration.name and 1 in configuration.value %}
+            <a class="like-button open-modal-onclick" data-modal="modal-connect">Se connecter</a> 
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+
+{% block button_contact %}
+    {% for configuration in configurations %}
+        {% if 'formulaire_contact' in configuration.name and 1 in configuration.value %}
+            <a class="like-button open-modal-onclick contact-generic" data-modal="modal-contact">Contacter le garage</a>
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+
+{% block button_comment %}
+    {% for configuration in configurations %}
+        {% if 'formulaire_comment' in configuration.name and 1 in configuration.value %}
+            <a class="like-button open-modal-onclick contact-generic" data-modal="modal-contact">Ajouter un commentaire</a>
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+
+
+{% block title_hours %}
+    {% for configuration in configurations %}
+        {% if 'titre_horaires' in configuration.name %}
+            <h2>{{ configuration.value }}</h2>
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+
+{% block title_services %}
+    {% for configuration in configurations %}
+        {% if 'titre_services' in configuration.name %}
+            <h2>{{ configuration.value }}</h2>
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+
+{% block title_voitures %}
+    {% for configuration in configurations %}
+        {% if 'titre_voitures' in configuration.name %}
+            <h2>{{ configuration.value }}</h2>
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+
+
+{% block section_hours %}
+    <section class="hours">
+        {% for opening_hour in opening_hours %}
+            <p>{{ opening_hour.day }} : {{ opening_hour.hours }}</p>
+        {% endfor %}
+    </section>
+{% endblock %}
+
+
+{% block section_comment %}
+    <section class="comments">
+        {% for comment in comments %}
+            {% if comment.accepted %}
+                <div class='comment'>
+                    <p class='text'>{{ comment.message }}</p>
+                    <div class='flex comment-note'>
+                        <p class='note'>{{ comment.grade }}/5</p>
+                        <p class='name'>{{ comment.name }}</p>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </section>
+{% endblock %}
+
+
+{% block section_services %}
+    <section class="services-section flex row wrap">
+        {% for service in services %}
+            <div class='service'>
+                <img src='gear.svg' width='24' class='icon' alt='icon service'>
+                <p>{{ service.name }}</p>
+            </div>
+        {% endfor %}
+    </section>
+{% endblock %}
+
+
+{% block section_used_cars %}
+    <section class="car-deals-section flex row wrap">
+    {% for used_car in used_cars %}
+      <div class='car-deal show'>
+        <div class='photo'>
+            {% for configuration in configurations %}
+                {% if 'formulaire_contact' in configuration.name and 1 in configuration.value %}
+                    <a class="like-button open-modal-onclick deal-contact" data-modal="modal-contact">Contact</a>
+                {% endif %}
+            {% endfor %}
+        
+            <img src= {{ used_car.pictureFilename }} alt='' width='100%' height='100%'>
+        </div>
+        <div class='twoline'>
+            <p class='model'>{{ used_car.model }}</p>
+        </div>
+        <p class='km'>{{ used_car.kilometers }} km</p>
+        <p class='year'>{{ used_car.year }}</p>
+        <p class='price'>{{ used_car.price }} €</p>
+        <p class='id_car_deal hidden'>{{ used_car.id }}</p>
+      </div>
+    {% endfor %}
+    </section>
+{% endblock %}

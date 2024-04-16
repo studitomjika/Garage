@@ -1,0 +1,322 @@
+body {
+	--black: #262526;
+	--white: #f2f2f2;
+	--light-pink: #d9777f;
+	--pink: #d94350;
+	--red: #d92332;
+  font-family: "Barlow", sans-serif;
+  display: flex;
+  flex-direction: row;
+  margin: 0px 15%;
+}
+
+html, body {
+	background: var(--white);
+	color: var(--black);
+	font-family: "Barlow", sans-serif;
+	line-height: 2.5ch;
+}
+
+h1 {/*good referencement*/
+  margin: 0;
+  width: 250px;
+  height: 100px;
+  background-image: url("logo-transparent.png");
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: contain;
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
+}
+
+h2 {
+  font-family: "Rajdhani", sans-serif;
+  font-size: large;
+  font-weight: bold;
+  align-items: center;
+	justify-content: start;
+  padding: 5px;
+  margin: 25px 0px 10px 0px;
+}
+
+.hours {
+  margin: 5px 0;
+}
+
+.hours > p {
+  padding: 0;
+  margin: 0;
+}
+
+/* BUTTONS */
+button, .like-button {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 10px 0px;
+  min-width: 2vw;
+  border: none;
+  background-color: #d92332;
+  color: #f2f2f2;
+  font-weight: bold;
+  text-decoration:none;
+  cursor: pointer;
+}
+
+/* COMMENTS */
+.comment {
+  margin-top: 25px;
+  box-shadow: 2px 4px 10px #d9777f1a;
+  padding-bottom: 10px;
+}
+.comment .text {
+  margin: 0px 0px;
+  padding: 15px;
+}
+.comment-note {
+  justify-content: space-around;
+}
+.comment .note {
+  margin: 0px 0px;
+  font-size: large;
+  font-weight: bold;
+}
+.comment .name {
+  color:grey;
+  font-style: italic;
+  margin: 0px 0px;
+}
+
+/* SERVICES */
+.services-section {
+  margin: 0px 100px;
+  justify-content: start;
+}
+.service {
+  display: flex;
+  align-items: center;
+	justify-content: start;
+  height: 40px;
+  margin: 15px 15px 15px 0px;
+  background-color: var(--pink);
+}
+.service > p {
+  padding: 0px 10px;
+  font-size: large;
+  align-content: center;
+  color: var(--white)
+}
+.service > img {
+  margin-left: 5px;
+}
+
+/* FILTERS */
+select {
+  margin: 10px;
+  border: 1px solid var(--light-pink);
+  border-radius: 0.25em;
+  font-size: 0.85em;
+  cursor: pointer;
+  background-image: linear-gradient(to top, var(--white), var(--white) 33%);
+  min-width: 175px;
+  max-width: 175px;
+}
+
+/* CAR DEALS */
+.car-deal {
+  display: none;
+  width: 144px;
+  margin: 10px;
+  box-shadow: 2px 4px 10px #d9777f1a;
+}
+.show {
+  display: block;
+}
+.car-deal > p {
+  margin: 0px;
+  padding: 5px 0px 10px 10px;
+}
+.car-deal:hover {
+  box-shadow: 2px 4px 10px #d9777f99;
+}
+.car-deals-section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.filtres {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.car-deal .photo {
+  position: relative;
+  max-height: 50%;
+  overflow: hidden;
+}
+.deal-contact {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  padding: 10px 20px;
+  margin: 10px 0px;
+  min-width: 2vw;
+  border: none;
+  background-color: #d92332;
+  color: #f2f2f2;
+  font-weight: bold;
+  text-decoration: none;
+}
+.car-deal:hover .deal-contact { 
+	display: inline;
+}
+.twoline {
+  display: inline-block;
+  box-sizing: border-box;
+  white-space: pre-line;
+  word-wrap: break-word;
+  }
+.model {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-align: left;
+  font-size: large;
+  font-weight: bold;
+  height: 44px;
+}
+.price {
+  text-align: right;
+  font-size: large;
+  font-weight: bold;
+}
+.km, .year {
+  font-size: medium;
+}
+
+ /* MODAL */
+ .modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+}
+.modal.show {
+  display: flex;
+  justify-content: center;
+  opacity: 1;
+}
+.modal-form {
+  background-color: var(--white);
+  margin-top: 50%;
+  padding: 20px 25px 20px 25px;
+  border: 1px solid var(--black);
+  width: 400px;
+  overflow: auto;
+}
+form {
+  display: flex;
+  flex-direction: column;
+}
+input:invalid {
+  background-color: var(--pink);
+}
+input[type=text], input[type=email], input[type=tel], input[type=password], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--black);
+  box-sizing: border-box;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  resize: none;
+}
+input[type=submit] {
+  cursor: pointer;
+  font-size: medium;
+}
+input[disabled=disabled] {
+  background-color: lightgray;
+  color: black;
+}
+.note-radio {
+  justify-content: space-around;
+}
+.close {
+  color: var(--black);
+  float: right;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+}
+.close:hover, .close:focus {
+  color: var(--pink);
+  text-decoration: none;
+  cursor: pointer;
+}
+.form-success {
+  font-weight: bold;
+}
+.form-fail {
+  font-weight: bold;
+  color: var(--red);
+}
+
+
+/* GENERAL */
+.flex {
+	display: flex;
+	align-items: center;
+	align-content: start;
+}
+.wrap {
+	flex-wrap: wrap;
+}
+.row {
+	flex-direction: row;
+}
+.col {
+	flex-direction: column;
+}
+.hidden {
+  display: none;
+}
+
+@media screen and (max-width: 650px) {
+  body {
+    flex-direction: column;
+  }
+
+  .services-section {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .services-section .service {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 468px) {
+  .car-deals-section {
+    justify-content: center;
+  }
+
+  .filtres > div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .modal div {
+    width: 92.5%;
+  }
+}

@@ -9,12 +9,25 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <h1>Hello V. Parrot! ✅</h1>
 
     This friendly message is coming from:
+
+    {{dump(configurations)}}
     <ul>
-        <li>Your controller at <code>/home/studio1656/DevWeb/Garage/src/Controller/HomeController.php</code></li>
-        <li>Your template at <code>/home/studio1656/DevWeb/Garage/templates/home/index.html.twig</code></li>
+        <li>Your services are:
+        <ul>
+        {% for service in services %}
+            <li>{{ service.name }}</li>
+        {% endfor %}
+        </ul></li>
+
+        <li>Your configurations are: </li>
+        <ul>
+        {% for configuration in configurations %}
+            <li>{{ configuration.name }} : {{ configuration.value }}</li>
+        {% endfor %}
+        </ul></li>
     </ul>
 </div>
 {% endblock %}
