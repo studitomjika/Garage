@@ -21,7 +21,7 @@
 {% block button_comment %}
     {% for configuration in configurations %}
         {% if 'formulaire_comment' in configuration.name and 1 in configuration.value %}
-            <a class="like-button open-modal-onclick contact-generic" data-modal="modal-contact">Ajouter un commentaire</a>
+            <a class="like-button open-modal-onclick contact-generic" data-modal="modal-comment">Ajouter un commentaire</a>
         {% endif %}
     {% endfor %}
 {% endblock %}

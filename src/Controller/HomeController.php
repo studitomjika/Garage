@@ -7,6 +7,8 @@ use App\Repository\ServiceRepository;
 use App\Repository\OpeningHoursRepository;
 use App\Repository\CommentRepository;
 use App\Repository\UsedCarRepository;
+use App\Entity\Comment;
+use App\Form\CommentType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -22,12 +24,17 @@ class HomeController extends AbstractController
                           CommentRepository $commentRepository,
                           UsedCarRepository $usedCarRepository): Response
     {
+        $comment = new Comment();
+        $form = $this->createForm(CommentType::class, $comment);
+
+
         return $this->render('home/index_garage.html.twig', [
             'services' => $serviceRepository->findAll(),
             'configurations' => $configurationRepository->findAll(),
             'opening_hours' => $openingHoursRepository->findAll(),
             'comments' => $commentRepository->findAll(),
             'used_cars' => $usedCarRepository->findAll(),
+            'comment_form' => $form,
         ]);
     }
 }
