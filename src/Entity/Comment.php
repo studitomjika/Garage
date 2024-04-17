@@ -24,11 +24,11 @@ class Comment
     private ?int $grade = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    #[Assert\NotBlank]
+    #[Assert\NotBlank(message: "Veuillez indiquer votre nom. (Entity)")]/* marche pas */
     private ?string $message = null;
 
     #[ORM\Column]
-    private ?bool $accepted = null;
+    private ?bool $accepted = false;
 
     #[ORM\ManyToOne]
     private ?Employee $employee = null;

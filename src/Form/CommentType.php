@@ -10,6 +10,8 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 class CommentType extends AbstractType
 {
@@ -18,6 +20,12 @@ class CommentType extends AbstractType
         $builder
             ->add('name', null, [
                 'label' => 'Votre nom',
+                /*'required' => false,*/ /* activer pour tester la validation coté serveur */
+                /* 'constraints' => [
+                     new Assert\NotBlank([
+                        'message' => 'Veuillez indiquer votre nom. (Type)'
+                    ]), 
+                    ] */ /* comment eviter le doublement de l'erreur ?*/
                 ])
             ->add('message', null, [
                 'label' => 'Votre commentaire',
@@ -32,7 +40,7 @@ class CommentType extends AbstractType
                     5 => false,
                 ],
                 'expanded' => true,
-            ])
+                ])
             ->add('submit', SubmitType::class)
 
             /*->add('accepted')

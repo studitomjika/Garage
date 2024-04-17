@@ -1,10 +1,29 @@
+{% set formErrors = comment_form.vars.errors.form.getErrors(true) %}
+{% if formErrors|length %}
+<div id="modal-comment" class="modal show">
+{% else %}
 <div id="modal-comment" class="modal">
+{% endif %}
   <div>
     <div class="modal-form">
       <a class="close close-modal-onclick">&times;</a>
       <!-- <h2><?= $CONFIGS['titre_form_comment']; ?></h2> -->
 
-      {{ form(comment_form) }}
+      {# {{ form(comment_form) }} #}
+      {{ form_start(comment_form) }}
+
+          {{ form_label(comment_form.name) }}
+          {{ form_widget(comment_form.name) }}
+          {{ form_errors(comment_form.name) }}
+
+          {{ form_row(comment_form.message) }}
+          {# {{ form_errors(comment_form.message) }} #}
+
+          {{ form_row(comment_form.grade) }}
+          {# {{ form_errors(comment_form.grade) }} #}
+
+          {{ form_row(comment_form.submit, { 'label': 'Ajouter un commentaire' }) }}
+      {{ form_end(comment_form) }}
 
     </div>
   </div>
