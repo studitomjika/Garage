@@ -2,40 +2,41 @@ document.querySelectorAll(".open-modal-onclick").forEach(el => {
   el.addEventListener("click", (evt) => {
     let idModal = el.getAttribute("data-modal")
     let modal = document.querySelector("#"+idModal)
-    console.log(idModal)
+    
     if( modal !== null) { modal.classList.add("show") }
 
     evt.preventDefault()
   })
 });
 
-/* document.querySelectorAll(".deal-contact").forEach(el => {
+document.querySelectorAll(".deal-contact").forEach(el => {
   el.addEventListener("click", (evt) => {
     
     let modelText = el.parentElement.parentElement.getElementsByClassName("model")[0].textContent
     let idText = el.parentElement.parentElement.getElementsByClassName("id_car_deal")[0].textContent
-
+    
     let textCarDeal = "Annonce: " + modelText
-    document.getElementById("subject").value = textCarDeal
-    document.getElementById("subject").setAttribute("disabled", "disabled")
+    console.log(textCarDeal)
+    document.getElementById("contact_subject").value = textCarDeal
+    document.getElementById("contact_subject").setAttribute("disabled", "disabled")
     document.getElementById("id_car_deal").value = idText
 
     evt.preventDefault()
   })
-}); */
+});
 
-/* document.querySelectorAll(".contact-generic").forEach(el => {
+document.querySelectorAll(".contact-generic").forEach(el => {
   el.addEventListener("click", (evt) => {
-    
+    console.log(".contact-generic")
     if( document.getElementById("id_car_deal") !== null && document.getElementById("id_car_deal").value != "") {
-      document.getElementById("subject").value = ""
-      document.getElementById("subject").removeAttribute("disabled")
+      document.getElementById("contact_subject").value = ""
+      document.getElementById("contact_subject").removeAttribute("disabled")
       document.getElementById("id_car_deal").value = ""
     }
 
     evt.preventDefault()
   })
-}); */
+});
 
 document.querySelectorAll(".close-modal-onclick").forEach(el => {
   el.addEventListener("click", (evt) => {

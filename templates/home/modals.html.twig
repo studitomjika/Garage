@@ -28,3 +28,41 @@
     </div>
   </div>
 </div>
+
+{% set formErrors = contact_form.vars.errors.form.getErrors(true) %}
+{% if formErrors|length %}
+<div id="modal-contact" class="modal show">
+{% else %}
+<div id="modal-contact" class="modal">
+{% endif %}
+  <div>
+    <div class="modal-form">
+      <a class="close close-modal-onclick">&times;</a>
+      <!-- <h2><?= $CONFIGS['titre_form_contact']; ?></h2> -->
+
+      {# {{ form(contact_form) }} #}
+      {{ form_start(contact_form) }}
+
+          {{ form_label(contact_form.name) }}
+          {{ form_widget(contact_form.name) }}
+          {{ form_errors(contact_form.name) }}
+
+          {{ form_row(contact_form.email) }}
+          {# {{ form_errors(contact_form.email) }} #}
+
+          {{ form_row(contact_form.phoneNumber) }}
+          {# {{ form_errors(contact_form.phoneNumber) }} #}
+
+          {{ form_label(contact_form.subject) }}
+          {{ form_widget(contact_form.subject) }}
+          {{ form_errors(contact_form.subject) }}
+
+          {{ form_row(contact_form.message) }}
+          {# {{ form_errors(contact_form.message) }} #}
+
+          {{ form_row(contact_form.submit, { 'label': 'Envoyer mon message' }) }}
+      {{ form_end(contact_form) }}
+
+    </div>
+  </div>
+</div>
