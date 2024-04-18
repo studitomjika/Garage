@@ -13,13 +13,10 @@ document.querySelectorAll(".deal-contact").forEach(el => {
   el.addEventListener("click", (evt) => {
     
     let modelText = el.parentElement.parentElement.getElementsByClassName("model")[0].textContent
-    let idText = el.parentElement.parentElement.getElementsByClassName("id_car_deal")[0].textContent
     
     let textCarDeal = "Annonce: " + modelText
-    console.log(textCarDeal)
     document.getElementById("contact_subject").value = textCarDeal
-    document.getElementById("contact_subject").setAttribute("disabled", "disabled")
-    document.getElementById("id_car_deal").value = idText
+    document.getElementById("contact_subject").setAttribute("readonly", "readonly")
 
     evt.preventDefault()
   })
@@ -27,12 +24,8 @@ document.querySelectorAll(".deal-contact").forEach(el => {
 
 document.querySelectorAll(".contact-generic").forEach(el => {
   el.addEventListener("click", (evt) => {
-    console.log(".contact-generic")
-    if( document.getElementById("id_car_deal") !== null && document.getElementById("id_car_deal").value != "") {
-      document.getElementById("contact_subject").value = ""
-      document.getElementById("contact_subject").removeAttribute("disabled")
-      document.getElementById("id_car_deal").value = ""
-    }
+    document.getElementById("contact_subject").value = ""
+    document.getElementById("contact_subject").removeAttribute("readonly")
 
     evt.preventDefault()
   })
