@@ -1,37 +1,45 @@
-{% extends 'base.html.twig' %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width,initial-scale=1" name="viewport">
+        <title>Garage V. Parrot</title>
+        <link href="https://fonts.cdnfonts.com/css/barlow" rel="stylesheet">
+        <link href="https://fonts.cdnfonts.com/css/rajdhani" rel="stylesheet">
+        <link rel="stylesheet" href="style.css?<?= time(); ?>"><!--dev only for CSS cache reload-->
+        <meta name="description" content="Réparation, révision, entretien, contrôle technique, vente de voitures d'occasions">
+    </head>
 
-{% block title %}Log in!{% endblock %}
+    <body>
+        <form method="post">
+            
+            <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+            <label for="inputUsername">Nom d'utilisateur</label>
+            <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" autocomplete="username" required autofocus>
+            <label for="inputPassword">Mot de passe</label>
+            <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
 
-{% block body %}
-<form method="post">
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-    {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
-        </div>
-    {% endif %}
+            <div class="checkbox mb-3">
+                <label>
+                    <input type="checkbox" name="_remember_me"> Se souvenir de moi
+                </label>
+            </div>
 
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputUsername">Username</label>
-    <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" autocomplete="username" required autofocus>
-    <label for="inputPassword">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+            <button class="btn btn-lg btn-primary" type="submit">
+                Se connecter
+            </button>
 
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
+            {% if error %}
+                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
 
-    <div class="checkbox mb-3">
-        <label>
-            <input type="checkbox" name="_remember_me"> Remember me
-        </label>
-    </div>
-
-    <button class="btn btn-lg btn-primary" type="submit">
-        Sign in
-    </button>
-</form>
-{% endblock %}
+            {% if app.user %}
+                <div class="mb-3">
+                    Vous étes connecté en tant que {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+                </div>
+            {% endif %}
+        </form>
+    </body>
+</html>

@@ -20,7 +20,7 @@ security:
             logout:
                 path: app_logout
                 # where to redirect after logout
-                # target: app_any_route
+                target: homepage
 
             remember_me:
                 secret: '%kernel.secret%'
@@ -29,7 +29,10 @@ security:
                 # by default, the feature is enabled by checking a checkbox in the
                 # login form, uncomment the following line to always enable it.
                 #always_remember_me: true
-
+        secured_area:
+            form_login:
+                enable_csrf: true
+                
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
 
