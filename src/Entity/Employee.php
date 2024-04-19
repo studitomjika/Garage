@@ -27,6 +27,9 @@ class Employee
     #[ORM\OneToMany(targetEntity: UsedCar::class, mappedBy: 'employee')]
     private Collection $usedCars;
 
+    #[ORM\OneToOne(mappedBy: 'employee', cascade: ['persist', 'remove'])]
+    private ?Admin $admin = null;
+
     public function __construct()
     {
         $this->usedCars = new ArrayCollection();
@@ -92,6 +95,28 @@ class Employee
                 $usedCar->setEmployee(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getAdmin(): ?Admin
+    {
+        return $this->admin;
+    }
+
+    public function setAdmin(?Admin $admin): static
+    {
+        // unset the owning side of the relation if necessary
+        if ($admin === null && $this->admin !== null) {
+            $this->admin->setEmployee(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($admin !== null && $admin->getEmployee() !== $this) {
+            $admin->setEmployee($this);
+        }
+
+        $this->admin = $admin;
 
         return $this;
     }
