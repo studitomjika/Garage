@@ -40,7 +40,7 @@ class DashboardController extends AbstractDashboardController
         // return $this->render('some/path/my-dashboard.html.twig');
 
         $routeBuilder = $this->container->get(AdminUrlGenerator::class);
-        $url = $routeBuilder->setController(EmployeeCrudController::class)->generateUrl();
+        $url = $routeBuilder->setController(CommentCrudController::class)->generateUrl();
 
         return $this->redirect($url);
     }
@@ -58,11 +58,11 @@ class DashboardController extends AbstractDashboardController
 
         yield MenuItem::linktoRoute('Back to the website', 'fas fa-home', 'homepage');
         yield MenuItem::linkToCrud('Comment', 'fas fa-map-marker-alt', Comment::class);
-        yield MenuItem::linkToCrud('Configuration', 'fas fa-map-marker-alt', Configuration::class);
-        yield MenuItem::linkToCrud('Employee', 'fas fa-map-marker-alt', Employee::class);
+        yield MenuItem::linkToCrud('Configuration', 'fas fa-map-marker-alt', Configuration::class)->setPermission('ROLE_ADMIN');
+        yield MenuItem::linkToCrud('Employee', 'fas fa-map-marker-alt', Employee::class)->setPermission('ROLE_ADMIN');
         yield MenuItem::linkToCrud('Message', 'fas fa-map-marker-alt', Message::class);
-        yield MenuItem::linkToCrud('OpeningHours', 'fas fa-map-marker-alt', OpeningHours::class);
-        yield MenuItem::linkToCrud('Service', 'fas fa-map-marker-alt', Service::class);
+        yield MenuItem::linkToCrud('OpeningHours', 'fas fa-map-marker-alt', OpeningHours::class)->setPermission('ROLE_ADMIN');
+        yield MenuItem::linkToCrud('Service', 'fas fa-map-marker-alt', Service::class)->setPermission('ROLE_ADMIN');
         yield MenuItem::linkToCrud('UsedCar', 'fas fa-map-marker-alt', UsedCar::class);
     }
 }
