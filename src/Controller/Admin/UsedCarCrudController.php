@@ -12,6 +12,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Filter\EntityFilter;
 
 class UsedCarCrudController extends AbstractCrudController
@@ -36,5 +37,12 @@ class UsedCarCrudController extends AbstractCrudController
         yield NumberField::new('price');
         yield IntegerField::new('kilometers');
         yield AssociationField::new('employee');
+        yield ImageField::new('picture_filename')
+                        ->setUploadDir('public/img/')
+                        ->setFormTypeOptions(['attr' => [
+                            'accept' => 'image/jpeg, image/png, image/gif'
+                            ]
+                        ])
+                        ->setHelp('fichier jpeg/png/gif');
     }
 }

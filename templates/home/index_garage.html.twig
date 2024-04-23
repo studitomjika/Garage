@@ -3,7 +3,12 @@
 {% block button_connect %}
     {% for configuration in configurations %}
         {% if 'formulaire_connect' in configuration.name and 1 in configuration.value %}
-            <a class="like-button open-modal-onclick" data-modal="modal-connect">Se connecter</a> 
+            {% if app.user %}
+                <a class="like-button" href="/admin">Administration</a>
+                Connecté en tant que {{ app.user.getUsername() }}                
+            {% else  %}
+                <a class="like-button" href="/login">Se connecter</a>
+            {% endif %}        
         {% endif %}
     {% endfor %}
 {% endblock %}
@@ -105,7 +110,7 @@
                 {% endif %}
             {% endfor %}
         
-            <img src= {{ used_car.pictureFilename }} alt='' width='100%' height='100%'>
+            <img src= {{ '/img/' ~ used_car.pictureFilename }} alt='' width='100%' height='100%'>
         </div>
         <div class='twoline'>
             <p class='model'>{{ used_car.model }}</p>

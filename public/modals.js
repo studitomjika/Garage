@@ -16,7 +16,7 @@ document.querySelectorAll(".deal-contact").forEach(el => {
     
     let textCarDeal = "Annonce: " + modelText
     document.getElementById("contact_subject").value = textCarDeal
-    document.getElementById("contact_subject").setAttribute("readonly", "readonly")
+    document.getElementById("contact_subject").setAttribute("readonly", "readonly") //dependant du navigateur
 
     evt.preventDefault()
   })
