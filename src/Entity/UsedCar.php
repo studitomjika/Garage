@@ -3,10 +3,17 @@
 namespace App\Entity;
 
 use App\Repository\UsedCarRepository;
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\ApiFilter;
+use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: UsedCarRepository::class)]
+#[ApiResource]
+//#[ApiFilter(SearchFilter::class, properties: ['id' => 'exact', 'price' => 'exact', 'kilometers' => 'exact', 'year' => 'exact'])]
 class UsedCar
 {
     #[ORM\Id]

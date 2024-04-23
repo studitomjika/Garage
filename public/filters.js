@@ -2,6 +2,14 @@ document.getElementById("price-select").onchange = filterSelection;
 document.getElementById("km-select").onchange = filterSelection;
 document.getElementById("year-select").onchange = filterSelection;
 
+async function  request(){
+  const reponse = await fetch("https://127.0.0.1:8000/filter");
+  const films = await reponse.json();
+  console.log(films)
+  
+}
+request();
+
 function filterSelection(evt) {
   const currentPrice = document.getElementById("price-select").options[document.getElementById("price-select").selectedIndex].value;
   const currentKM = document.getElementById("km-select").options[document.getElementById("km-select").selectedIndex].value;
