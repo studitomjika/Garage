@@ -1,0 +1,13 @@
+{# <div {{ dump() }}> #}
+<div {{ attributes }}>
+    <input
+        type="search"
+        name="query"
+        value="{{ query }}"
+        data-action="live#update"
+    >
+
+    {% for usedcar in this.usedcars %}
+        {{ component('usedcar', {'id': usedcar.id}) }}
+    {% endfor %}
+</div>

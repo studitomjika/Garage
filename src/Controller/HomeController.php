@@ -17,6 +17,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Twig\Environment;
+use App\Twig\Components\UsedCarsFilter;
 
 class HomeController extends AbstractController
 {
@@ -31,7 +32,8 @@ class HomeController extends AbstractController
                           ServiceRepository $serviceRepository,
                           OpeningHoursRepository $openingHoursRepository,
                           CommentRepository $commentRepository,
-                          UsedCarRepository $usedCarRepository): Response
+                          UsedCarRepository $usedCarRepository,
+                          UsedCarsFilter $usedCarsFilter): Response
     {
         $comment = new Comment();
         $form_comment = $this->createForm(CommentType::class, $comment);
@@ -72,6 +74,15 @@ class HomeController extends AbstractController
             'used_cars' => $usedCarRepository->findAll(),
             'comment_form' => $form_comment,
             'contact_form' => $form_contact,
+            /*'controller_name' => 'BlogController',*/
         ]);
     }
+
+    /* #[Route('/search', name: 'app_search')]
+    public function search(): Response
+    {
+        return $this->render('blog/search.html.twig', [
+            'controller_name' => 'BlogController',
+        ]);
+    } */
 }

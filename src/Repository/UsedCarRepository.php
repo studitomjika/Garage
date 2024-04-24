@@ -21,6 +21,21 @@ class UsedCarRepository extends ServiceEntityRepository
         parent::__construct($registry, UsedCar::class);
     }
 
+    public function findByQuery(string $query): array
+    {
+        if (empty($query)) {
+            return [];
+        }
+        
+        return $this->createQueryBuilder('b')
+            ->andWhere('b.model LIKE :query')
+            ->setParameter('query', '%'.$query.'%')
+            ->orderBy('b.id', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     //    /**
     //     * @return UsedCar[] Returns an array of UsedCar objects
     //     */

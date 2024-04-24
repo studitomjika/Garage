@@ -7,3 +7,6 @@ controllers:
 app_logout:
     path: /logout
     methods: ['GET']
+
+live_component:
+    resource: '@LiveComponentBundle/Resources/config/routing/live_component.xml'
