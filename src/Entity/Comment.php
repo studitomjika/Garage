@@ -16,16 +16,16 @@ class Comment
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank]
+    #[Assert\NotBlank(message: "Veuillez indiquer votre nom.")]
     private ?string $name = null;
 
-    #[ORM\Column(type: Types::SMALLINT)]
-    #[Assert\NotBlank]
-    private ?int $grade = null;
-
     #[ORM\Column(type: Types::TEXT)]
-    #[Assert\NotBlank(message: "Veuillez indiquer votre nom. (Entity)")]/* marche pas */
+    #[Assert\NotBlank(message: "Veuillez indiquer votre message.")]
     private ?string $message = null;
+
+    #[ORM\Column(type: Types::SMALLINT)]
+    #[Assert\NotBlank(message: "Veuillez mettre une note.)")]
+    private ?int $grade = null;
 
     #[ORM\Column]
     private ?bool $accepted = false;

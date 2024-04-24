@@ -16,11 +16,13 @@
           {{ form_widget(comment_form.name) }}
           {{ form_errors(comment_form.name) }}
 
-          {{ form_row(comment_form.message) }}
-          {# {{ form_errors(comment_form.message) }} #}
+          {{ form_label(comment_form.message) }}
+          {{ form_widget(comment_form.message) }}
+          {{ form_errors(comment_form.message) }}
 
-          {{ form_row(comment_form.grade) }}
-          {# {{ form_errors(comment_form.grade) }} #}
+          {{ form_label(comment_form.grade) }}
+          {{ form_widget(comment_form.grade) }}
+          {{ form_errors(comment_form.grade) }}
 
           {{ form_row(comment_form.submit, { 'label': 'Ajouter un commentaire' }) }}
       {{ form_end(comment_form) }}
@@ -47,18 +49,21 @@
           {{ form_widget(contact_form.name) }}
           {{ form_errors(contact_form.name) }}
 
-          {{ form_row(contact_form.email) }}
-          {# {{ form_errors(contact_form.email) }} #}
+          {{ form_label(contact_form.email) }}
+          {{ form_widget(contact_form.email) }}
+          {{ form_errors(contact_form.email) }}
 
-          {{ form_row(contact_form.phoneNumber) }}
-          {# {{ form_errors(contact_form.phoneNumber) }} #}
+          {{ form_label(contact_form.phoneNumber) }}
+          {{ form_widget(contact_form.phoneNumber) }}
+          {{ form_errors(contact_form.phoneNumber) }}
 
           {{ form_label(contact_form.subject) }}
           {{ form_widget(contact_form.subject) }}
           {{ form_errors(contact_form.subject) }}
 
-          {{ form_row(contact_form.message) }}
-          {# {{ form_errors(contact_form.message) }} #}
+          {{ form_label(contact_form.message) }}
+          {{ form_widget(contact_form.message) }}
+          {{ form_errors(contact_form.message) }}
 
           {{ form_row(contact_form.submit, { 'label': 'Envoyer mon message' }) }}
       {{ form_end(contact_form) }}
