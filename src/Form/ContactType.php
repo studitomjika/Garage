@@ -17,22 +17,52 @@ class ContactType extends AbstractType
     {
         $builder
             ->add('name', null, [
-                'label' => 'Votre nom',])
+                'label' => 'Votre nom',
+                'required' => true, /* false pour tester la validation coté serveur */
+                'constraints' => [
+                    new Assert\NotBlank([
+                    'message' => 'Veuillez indiquer votre nom.'
+                    ]),]
+                ])
             ->add('email', EmailType::class, [
-                'label' => 'Votre mail',])
+                'label' => 'Votre mail',
+                'required' => true, /* false pour tester la validation coté serveur */
+                'constraints' => [
+                    new Assert\NotBlank([
+                    'message' => 'Veuillez indiquer un mail.'
+                    ]),
+                    new Assert\Email([
+                    'message' => 'Veuillez indiquer un mail valide.'
+                    ]),]
+                ])
             ->add('phoneNumber', TelType::class, [
-                'label' => 'Votre numéro de téléphone',])
+                'label' => 'Votre numéro de téléphone',
+                'required' => true, /* false pour tester la validation coté serveur */
+                'constraints' => [
+                    new Assert\NotBlank([
+                    'message' => 'Veuillez indiquer un numéro de téléphone.'
+                    ]),
+                    new Assert\Regex([
+                        'pattern' => '/^(?:(?:\+|00)33[\s.-]{0,3}(?:\(0\)[\s.-]{0,3})?|0)[1-9](?:(?:[\s.-]?\d{2}){4}|\d{2}(?:[\s.-]?\d{3}){2})$/',
+                        'match' => true,
+                        'message' => 'Veuillez indiquer un numéro de téléphone valide.'
+                    ]),]
+                ])
             ->add('subject', null, [
                 'label' => 'Sujet du message',
-                'required' => false, /* activer pour tester la validation coté serveur */
-                 'constraints' => [
-                     new Assert\NotBlank([
-                        'message' => 'Veuillez indiquer un sujet. (Type)'
-                    ]),
-                    ]  /* comment eviter le doublement de l'erreur ?*/
+                'required' => true, /* false pour tester la validation coté serveur */
+                'constraints' => [
+                    new Assert\NotBlank([
+                    'message' => 'Veuillez indiquer un sujet.'
+                    ])] /* comment eviter le doublement de l'erreur ?*/
                 ])
             ->add('message', null, [
                 'label' => 'Votre message',
+                'required' => true, /* false pour tester la validation coté serveur */
+                'constraints' => [
+                    new Assert\NotBlank([
+                    'message' => 'Veuillez indiquer un messgae.'
+                    ]),]
                 ])
             ->add('submit', SubmitType::class)
         ;
