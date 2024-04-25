@@ -63,7 +63,6 @@ class HomeController extends AbstractController
             return $this->redirectToRoute('homepage');
         }
         
-
         return $this->render('home/index_garage.html.twig', [
             'services' => $serviceRepository->findAll(),
             'configurations' => $configurationRepository->findAll(),
