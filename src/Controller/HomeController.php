@@ -17,6 +17,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Twig\Environment;
+use Symfony\Component\HttpFoundation\StreamedJsonResponse;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class HomeController extends AbstractController
 {
@@ -73,4 +75,23 @@ class HomeController extends AbstractController
             'contact_form' => $form_contact,
         ]);
     }
+
+    /*#[Route('/filter', name: 'filter')]
+    public function filter(Request $request, UsedCarRepository $usedCarRepository): Response
+    {
+        $used_cars = $usedCarRepository->findAll();
+        $used_cars_json = json_encode(array_values($used_cars));
+  
+        dd($used_cars_json);
+        /*$response = new JsonResponse($used_cars_json.toIterable());
+        return $response;*/
+
+        /* return JsonResponse::setData($used_cars); */
+
+        /*$response = new JsonResponse();
+        $response->setData($used_cars);
+        dd($used_cars);
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
+    }*/
 }
