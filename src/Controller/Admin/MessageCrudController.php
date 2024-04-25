@@ -20,10 +20,13 @@ class MessageCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         //yield IdField::new('id');
-        yield TextField::new('name');
+        yield TextField::new('name')
+                        ->setLabel('Nom');
         yield EmailField::new('email');
-        yield TextField::new('phone_number');
-        yield TextField::new('subject');
+        yield TextField::new('phone_number')
+                        ->setLabel('Télephone');
+        yield TextField::new('subject')
+                        ->setLabel('Sujet');
         yield TextField::new('message');
     }
 }
