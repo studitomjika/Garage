@@ -1,0 +1,20 @@
+{% for used_car in used_cars %}
+    <div class='car-deal show'>
+    <div class='photo'>
+        {% for configuration in configurations %}
+            {% if 'formulaire_contact' in configuration.name and 1 in configuration.value %}
+                <a class="like-button open-modal-onclick deal-contact" data-modal="modal-contact">Contact</a>
+            {% endif %}
+        {% endfor %}
+    
+        <img src= {{ '/img/' ~ used_car.pictureFilename }} alt='' width='100%' height='100%'>
+    </div>
+    <div class='twoline'>
+        <p class='model'>{{ used_car.model }}</p>
+    </div>
+    <p class='km'>{{ used_car.kilometers }} km</p>
+    <p class='year'>{{ used_car.year }}</p>
+    <p class='price'>{{ used_car.price }} €</p>
+    <p class='id_car_deal hidden'>{{ used_car.id }}</p>
+    </div>
+{% endfor %}
