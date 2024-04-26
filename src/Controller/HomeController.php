@@ -64,13 +64,12 @@ class HomeController extends AbstractController
 
             return $this->redirectToRoute('homepage');
         }
-        /*meilleur pratique */
-        /* si sur cette route c'est une requete ajax (detect ajax php), retour en json, plus besoin de la route filter */
-        /* if($request->isXmlHttpRequest())
+
+        /* si sur cette route c'est une requete ajax (detect ajax php), plus besoin de la route filter */
+        if($request->isXmlHttpRequest())
         {
-            exit(var_export("hello", 1));
-            return filter($request, $usedCarRepository);
-        } */
+            return $this->filterUsedCars($request, $usedCarRepository, $configurationRepository);
+        } 
 
         return $this->render('home/index_garage.html.twig', [
             'services' => $serviceRepository->findAll(),
@@ -83,34 +82,8 @@ class HomeController extends AbstractController
         ]);
     }
 
-    /*#[Route('/filter', name: 'filter')]
-    public function filter(Request $request, UsedCarRepository $usedCarRepository): Response
-    {
-        $used_cars = $usedCarRepository->findByFilter();
-
-        $arrayResult = [];
-        foreach($used_cars as $used_car)
-        {//ne pas renvoyer les employe.e.s
-            $arrayResult[] = [
-                'id' => $used_car->getId(),
-                'model' => $used_car->getModel(),
-                'year' => $used_car->getYear(),
-                'price' => $used_car->getPrice(),
-                'picture_filename' => $used_car->getPictureFilename(),
-            ];
-        }
-        
-        $used_cars_json = json_encode($arrayResult);
-
-        $response = new JsonResponse();
-        $response->setData($used_cars_json);
-        $response->headers->set('Content-Type', 'application/json');
-
-        return $response;
-    }*/
-
-    #[Route('/filter2', name: 'filter2')]
-    public function filter2(Request $request, UsedCarRepository $usedCarRepository, ConfigurationRepository $configurationRepository): Response
+    //#[Route('/filter', name: 'filter')]
+    public function filterUsedCars(Request $request, UsedCarRepository $usedCarRepository, ConfigurationRepository $configurationRepository): Response
     {
         return $this->render('home/filtered_cars.html.twig', [
             'used_cars' => $usedCarRepository->findByFilter(),

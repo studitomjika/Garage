@@ -20,10 +20,16 @@ async function requestFilteredCarDeals(){
     range_year: document.getElementById("year-select").value,
   };
 
-  await fetch("https://127.0.0.1:8000/filter2?" + new URLSearchParams(parameters))
+  await fetch("https://127.0.0.1:8000/home?" + new URLSearchParams(parameters), {
+    method: "GET",
+    headers: {
+      'credentials': 'same-origin',
+      'X-Requested-With': 'XMLHttpRequest',
+      'Content-Type': 'application/json'
+    }
+  })
   .then((response) => response.text())
   .then((text) => {
-    console.log(text);
     carDealSection.innerHTML = text;
   })
 }
