@@ -5,10 +5,11 @@
         {% if 'formulaire_connect' in configuration.name and 1 in configuration.value %}
             {% if app.user %}
                 <a class="like-button" href="/admin">Administration</a>
-                Connecté en tant que {{ app.user.getUsername() }}                
+                Connecté en tant que {{ app.user.getUsername() }}      
+                <a class="like-button" href="/logout">Se déconnecter</a>          
             {% else  %}
                 <a class="like-button" href="/login">Se connecter</a>
-            {% endif %}        
+            {% endif %}
         {% endif %}
     {% endfor %}
 {% endblock %}
