@@ -21,6 +21,10 @@ class OpeningHoursRepository extends ServiceEntityRepository
         parent::__construct($registry, OpeningHours::class);
     }
 
+    public function findAll(): array
+    {
+        return $this->findBy(array(), array('id' => 'ASC'));
+    }
     //    /**
     //     * @return OpeningHours[] Returns an array of OpeningHours objects
     //     */
