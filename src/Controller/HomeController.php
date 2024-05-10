@@ -83,7 +83,9 @@ class HomeController extends AbstractController
     }
 
     //#[Route('/filter', name: 'filter')]
-    public function filterUsedCars(Request $request, UsedCarRepository $usedCarRepository, ConfigurationRepository $configurationRepository): Response
+    public function filterUsedCars(Request $request,
+                                   UsedCarRepository $usedCarRepository,
+                                   ConfigurationRepository $configurationRepository): Response
     {
         return $this->render('home/filtered_cars.html.twig', [
             'used_cars' => $usedCarRepository->findByFilter(),

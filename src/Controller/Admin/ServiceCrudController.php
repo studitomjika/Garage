@@ -18,6 +18,14 @@ class ServiceCrudController extends AbstractCrudController
         return Service::class;
     }
     
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setEntityLabelInSingular('Service')
+            ->setEntityLabelInPlural('Services')
+        ;
+    }
+
     public function configureFields(string $pageName): iterable
     {
         //yield IdField::new('id');

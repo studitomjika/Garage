@@ -3,10 +3,10 @@
         <label for="price-select">Prix</label>
         <select name="range_price" id="price-select">
             <option value="-1">Tous les prix</option>
-            <option value="0_1500">0€ à 1500€</option>
-            <option value="1500_3000">1500€ à 3000€</option>
-            <option value="3000_9000">3000€ à 9000€</option>
-            <option value="9000">9000€ et +</option>
+            <option value="0..1500">0€ à 1500€</option>
+            <option value="1500..3000">1500€ à 3000€</option>
+            <option value="3000..9000">3000€ à 9000€</option>
+            <option value="9000..10000000">9000€ et +</option>
         </select>
     </div>
 
@@ -14,10 +14,10 @@
         <label for="km-select">Kilométrage</label>
         <select name="range_km" id="km-select">
             <option value="-1">Tous les Kilométrages</option>
-            <option value="0_15000">0km à 15 000km</option>
-            <option value="15000_40000">15 000km à 40 000km</option>
-            <option value="40000_90000">40 000km à 90 000km</option>
-            <option value="90000">90 000km et +</option>
+            <option value="0..15000">0km à 15 000km</option>
+            <option value="15000..40000">15 000km à 40 000km</option>
+            <option value="40000..90000">40 000km à 90 000km</option>
+            <option value="90000..1000000">90 000km et +</option>
         </select>
     </div>
 
@@ -25,10 +25,10 @@
         <label for="year-select">Mise en circulation</label>
         <select name="range_year" id="year-select">
             <option value="-1">Toutes les Années</option>
-            <option value="2000">avant 2000</option>
-            <option value="2000_2007">2000 à 2007</option>
-            <option value="2008_2014">2008 à 2014</option>
-            <option value="2015">après 2015</option>
+            <option value="0..2000">avant 2000</option>
+            <option value="2000..2007">2000 à 2007</option>
+            <option value="2008..2014">2008 à 2014</option>
+            <option value="2015..2100">après 2015</option>
         </select>
     </div>
     <button type="submit" id="filterButton">Filtrer</button>
